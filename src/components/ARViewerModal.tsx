@@ -11,13 +11,12 @@ interface ARViewerModalProps {
 
 // Model map based on category
 const getModelUrl = (categoryId: string) => {
-  // Let's use some real generic GLB models from modelviewer.dev
+  // Let's use some real generic GLB models from KhronosGroup
   switch (categoryId) {
     case "meals":
     case "campaigns":
-      // A generic burger/food model if possible, we'll use a known public one
-      // ModelViewer shared assets avocado for food
-      return "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb";
+    case "desserts":
+      return "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb";
     case "beers":
     case "soft_drinks":
     case "cocktails":
@@ -26,12 +25,9 @@ const getModelUrl = (categoryId: string) => {
     case "spirits":
     case "whiskies":
     case "teas":
-      // A generic bottle or cup for drinks
-      return "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb";
-    case "desserts":
-      return "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb";
+      return "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/WaterBottle/glTF-Binary/WaterBottle.glb";
     default:
-      return "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb";
+      return "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF-Binary/Avocado.glb";
   }
 };
 
@@ -98,9 +94,12 @@ export function ARViewerModal({ item, isOpen, onClose }: ARViewerModalProps) {
             </div>
             
             {/* Disclaimer or hints */}
-            <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent pointer-events-none flex justify-center">
-              <p className="text-[10px] text-white/50 text-center max-w-[80%] font-medium">
-                3D modeli döndürmek için sürükleyin. AR özelliğini kullanmak için "Masanda Gör" butonuna tıklayarak kameranızı açın. (Bu özellik AR destekli cihazlarda çalışır.)
+            <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent pointer-events-none flex flex-col items-center justify-end">
+              <p className="text-[10.5px] text-amber-400/90 text-center max-w-[85%] font-black uppercase tracking-wider mb-1">
+                ⚠️ AR (Artırılmış Gerçeklik) Uyarı
+              </p>
+              <p className="text-[9.5px] text-white/70 text-center max-w-[90%] font-medium">
+                AR özelliğinin kameranıza erişebilmesi için uygulamayı <strong className="text-white">Yeni Sekmede</strong> açmalısınız. "Masanda Gör" butonuna basarak kameranızı aktifleştirebilirsiniz. (iOS ve desteklenen Android cihazlarda çalışır.)
               </p>
             </div>
           </motion.div>
